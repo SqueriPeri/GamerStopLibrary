@@ -18,7 +18,8 @@ public class Tester {
 			System.out.print("Admin? ");
 			String a = kb.next().toLowerCase(); //takes keyboard input and initiates it in lower case
 			
-			switch (a.charAt(0)) { //checks first character of user input
+			switch (a.charAt(0)) { //checks first character of user input; i might move this to a separate fuction
+					       //so it can be called any time, making code less clunky.	
 				
 				//if user enters yes or true, calls the passCheck function
 				//then sets repeat boolean to false
