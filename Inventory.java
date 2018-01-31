@@ -23,32 +23,29 @@ public class Inventory {
 		Scanner kbReader = new Scanner(System.in); //new scanner that reads kb
 		System.out.print("Password? ");
 		String user = kbReader.next(); //gets next user String
-		
-		//checks user to see if the password was correct
-		if (user.equals("Hello")) { 
-			System.out.println("Hello, Admin ");
-			admin = true;
-		}
-		else {
-			System.out.println("Wrong password. Try again? ");
-			//working on calling another method
-			boolean again = kbReader.nextBoolean();
-			if (again) {
-				passCheck();
-			}
-			else {
-				admin = false;
-			}
-			
+		switch (user) { //switch to check user's attempt for password
+			case "Hello":
+				admin = true;
+				System.out.println("Hello, Admin!");
+				break;
+			default:
+				System.out.print("Invalid password. Try again? ");
+				boolean again = kbReader.nextBoolean();
+				//checks if user wants to try password again;
+				//if so, repeats passCheck (loop may be better solution)
+				//if not, sets admin to false and carries on
+				if (again) {
+					passCheck();
+				}
+				else {
+					admin = false;
+				}
+				
 		}
 	
 	}
 	
-	public void passAgain(boolean b) {
-		
-	}
-
-	public boolean admin = true;
+	public boolean admin = true; //public boolean for all methods to see if user is admin and work accordingly
 	public ArrayList<String> stock = new ArrayList<String>(); //variable list for game names
 	
 }
