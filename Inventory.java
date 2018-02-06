@@ -60,8 +60,44 @@ public class Inventory {
 	 * functions accordingly
 	 */
 	public void loadMenu() {
-		System.out.print(admin);
+		Scanner kb = new Scanner(System.in);
+		System.out.println(admin);
+		
+		boolean quit = false;
+		do{
+		
+			System.out.println("What would you like to do today?\n"
+						+ "A: Show Library\n"
+						+ "B: Add Item\n"
+						+ "C: Remove Item\n"
+						+ "D: Quit");
+			char choice = kb.nextLine().charAt(0);
+			switch(choice) {
+			
+				case 'A':
+				case 'a':
+					System.out.print("You said 'A' ");//call showLibrary method
+					break;
+					
+				case 'B':
+				case 'b':
+					System.out.print("You said 'B' ");//call showLibrary method
+					break;
+					
+				case 'C':
+				case 'c':
+					System.out.print("You said 'C' ");//call showLibrary method
+					break;
+					
+				case 'D':
+				case 'd':
+					System.out.print("You said 'D'. Quitting.");//call showLibrary method
+					quit = true;
+					break;
+			}
+		}while(!quit);
 	}
+	
 	
 	/**
 	 * YesOrNo
