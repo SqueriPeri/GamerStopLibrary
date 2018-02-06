@@ -53,10 +53,57 @@ public class Inventory {
 		}while(again); //while loop checks the admin var, and if its still true, it repeats the password check
 	}
 	
-	public void loadMenu() { //function that will display options
-		
+	
+	/**
+	 * loadMenu
+	 * loads a menu of things for the user to choose; stuff like "Add game" or "Search library" then
+	 * functions accordingly
+	 */
+	public void loadMenu() {
 		System.out.print(admin);
 	}
+	
+	/**
+	 * YesOrNo
+	 * Takes user input, looking for Yes, No, True, or false
+	 * and returns a boolean from that; if yes or true, return true; vice versa
+	 * This is to reduce clutter in code, as we can call the statement at any time
+	 */
+	public boolean yesOrNo() {
+		Scanner kbReader = new Scanner(System.in);
+		boolean r = false;
+		do {
+			
+			String a = kbReader.next().toLowerCase(); //takes keyboard input and initiates it in lower case
+			switch (a.charAt(0)) { //checks first character of user input
+				
+				//if user enters yes or true, calls the passCheck function
+				//then sets repeat boolean to false
+				case 'y':
+				case 't':
+					r = false;
+					return true;
+					
+					//break;
+				
+				//if user says no or false, does not call passCheck
+				//then sets repeat boolean to false
+				case 'f':
+				case 'n':
+					r = false;
+					break;
+				
+				//if user input is invalid, set repeat to true so user can try again
+				default:
+					System.out.println("Invalid. Please try again._ ");
+					r = true;
+					break;
+			}
+			
+		} while(r);
+		return false;
+	}
+	
 	public boolean admin = false; //public boolean for all methods to see if user is admin and work accordingly
 	public ArrayList<String> stock = new ArrayList<String>(); //variable list for game names
 	
