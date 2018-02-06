@@ -11,42 +11,17 @@ public class Tester {
 		//initiates new store object
 		Inventory store = new Inventory();
 		Scanner kb = new Scanner(System.in);
-		boolean r = false;
 		
-		//loop will repeat if user does not enter a valid input
-		do {
-			System.out.print("Admin? ");
-			String a = kb.next().toLowerCase(); //takes keyboard input and initiates it in lower case
+		System.out.print("Admin?_ ");
+		//checks if user wants to login as admin; if they do, passes on to the password checker 
+		if(store.yesOrNo()) {
+			store.passCheck();
+		}
 			
-			switch (a.charAt(0)) { //checks first character of user input
-				
-				//if user enters yes or true, calls the passCheck function
-				//then sets repeat boolean to false
-				case 'y':
-				case 't':
-					r = false;
-					store.passCheck();
-					
-					break;
-				
-				//if user says no or false, does not call passCheck
-				//then sets repeat boolean to false
-				case 'f':
-				case 'n':
-					r = false;
-					break;
-				
-				//if user input is invalid, set repeat to true so user can try again
-				default:
-					System.out.println("Invalid.");
-					r = true;
-					break;
-			}
-			
-		} while(r);
 		store.loadMenu();
 		
 		
 	}
 
 }
+
