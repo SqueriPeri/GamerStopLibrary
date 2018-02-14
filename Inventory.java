@@ -13,7 +13,7 @@ public class Inventory {
 	
 	}
 	
-	/*
+	/**
 	 * passCheck
 	 * checks if what the user entered is correct
 	 * if wrong, prompts if they want to try again
@@ -67,37 +67,66 @@ public class Inventory {
 		do{
 		
 			System.out.println("What would you like to do today?\n"
-						+ "A: Show Library\n"
-						+ "B: Add Item\n"
-						+ "C: Remove Item\n"
-						+ "D: Quit");
+						+ "A: Show Library");
+			if (admin) {
+				System.out.print("B: Add Item\n"
+							+ "C: Remove Item\n");
+			}
+			System.out.print("D: Quit");
 			char choice = kb.nextLine().charAt(0);
 			switch(choice) {
 			
 				case 'A':
 				case 'a':
-					System.out.print("You said 'A' ");//call showLibrary method
+					System.out.println("You said 'A' \n");//call showLibrary method
+					showLibrary();
 					break;
 					
 				case 'B':
 				case 'b':
-					System.out.print("You said 'B' ");//call showLibrary method
+					//put lines 86-89 into separate method
+					System.out.println("You said 'B' \n");
+					addItem();
 					break;
 					
 				case 'C':
 				case 'c':
-					System.out.print("You said 'C' ");//call showLibrary method
+					System.out.println("You said 'C' \n");
 					break;
 					
 				case 'D':
 				case 'd':
-					System.out.print("You said 'D'. Quitting.");//call showLibrary method
+					System.out.println("You said 'D'. Quitting.");
 					quit = true;
 					break;
+					
+				default:
+					System.out.println("Please enter a valid choice(A, B, C, or D)");
+			
 			}
 		}while(!quit);
 	}
 	
+	public void showLibrary() {
+		//display current library and ask if user wants to sort it
+		for (int i = 0; i < quantity; i++) { //as long as index i is less than however many items
+											 //are in the library, print out item at i
+			System.out.println(stockNames.get(i) + ", " + stockCons.get(i));
+		}
+	
+	}
+	
+	public void addItem() {
+		Scanner kb = new Scanner(System.in);
+		System.out.println("Name?");
+		String n = kb.nextLine();	//get name of game being added
+		System.out.println("Console?");
+		String c = kb.nextLine();	//get console of game being added
+		Item nItem = new Item(n, c, 2);
+		stockNames.add(nItem.reName()); //adds name of item to name array
+		stockCons.add(nItem.reConsole()); //adds console to the same spot in console array
+		quantity++;
+	}
 	
 	/**
 	 * YesOrNo
@@ -105,7 +134,7 @@ public class Inventory {
 	 * and returns a boolean from that; if yes or true, return true; vice versa
 	 * This is to reduce clutter in code, as we can call the statement at any time
 	 */
-	public boolean yesOrNo() {
+ 	public boolean yesOrNo() {
 		Scanner kbReader = new Scanner(System.in);
 		boolean r = false;
 		do {
@@ -140,7 +169,9 @@ public class Inventory {
 		return false;
 	}
 	
+ 	 //number of items in inventory
 	public boolean admin = false; //public boolean for all methods to see if user is admin and work accordingly
-	public ArrayList<String> stock = new ArrayList<String>(); //variable list for game names
-	
+	public ArrayList<String> stockNames = new ArrayList<String>(); //variable list for game info
+	public ArrayList<String> stockCons = new ArrayList<String>(); 
+	public int quantity = stockNames.size();
 }
