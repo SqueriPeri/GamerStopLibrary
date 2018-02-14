@@ -72,7 +72,7 @@ public class Inventory {
 				System.out.print("B: Add Item\n"
 							+ "C: Remove Item\n");
 			}
-			System.out.print("D: Quit");
+			System.out.print("D: Quit\n");
 			char choice = kb.nextLine().charAt(0);
 			switch(choice) {
 			
@@ -109,8 +109,10 @@ public class Inventory {
 	
 	public void showLibrary() {
 		//display current library and ask if user wants to sort it
+		
 		for (int i = 0; i < quantity; i++) { //as long as index i is less than however many items
 											 //are in the library, print out item at i
+			
 			System.out.println(stockNames.get(i) + ", " + stockCons.get(i));
 		}
 	
@@ -118,13 +120,19 @@ public class Inventory {
 	
 	public void addItem() {
 		Scanner kb = new Scanner(System.in);
+		
 		System.out.println("Name?");
 		String n = kb.nextLine();	//get name of game being added
+		
 		System.out.println("Console?");
 		String c = kb.nextLine();	//get console of game being added
+		
 		Item nItem = new Item(n, c, 2);
+		
 		stockNames.add(nItem.reName()); //adds name of item to name array
 		stockCons.add(nItem.reConsole()); //adds console to the same spot in console array
+		stockNames.sort(String::compareToIgnoreCase); //sorts library before printing so its organized
+		stockCons.sort(String::compareToIgnoreCase);
 		quantity++;
 	}
 	
